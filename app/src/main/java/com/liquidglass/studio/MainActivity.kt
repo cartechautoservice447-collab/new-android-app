@@ -12,6 +12,7 @@ class MainActivity : ComponentActivity() {
         val webView = WebView(this).apply {
             settings.javaScriptEnabled = true
             settings.domStorageEnabled = true
+            settings.databaseEnabled = true
             webViewClient = WebViewClient()
             loadUrl("https://ais-dev-4yp5a6brmrg7qo4zuk6g5s-943212104213.asia-southeast1.run.app")
         }

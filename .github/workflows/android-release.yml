@@ -106,9 +106,13 @@ jobs:
       - name: Verify signed release APK and AAB
         run: |
           set -e
+          APK_SIGNER="$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          test -x "$APK_SIGNER" || (echo "apksigner was not found in Android build-tools" && exit 1)
+          echo "Using apksigner: $APK_SIGNER"
+
           test -f android/app/build/outputs/apk/release/app-release.apk
           test -f android/app/build/outputs/bundle/release/app-release.aab
-          apksigner verify --verbose android/app/build/outputs/apk/release/app-release.apk
+          "$APK_SIGNER" verify --verbose android/app/build/outputs/apk/release/app-release.apk
           jarsigner -verify -verbose -certs android/app/build/outputs/bundle/release/app-release.aab >/tmp/aab-jarsigner.txt
           grep -q "jar verified" /tmp/aab-jarsigner.txt
 

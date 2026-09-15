@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -42,6 +43,11 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK components
+        run: |
+          sdkmanager --update || true
+          sdkmanager "platforms;android-35" "build-tools;35.0.0" "cmdline-tools;latest" || true
 
       - name: Build debug Android APK
         working-directory: android

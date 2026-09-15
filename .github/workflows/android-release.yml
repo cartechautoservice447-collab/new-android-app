@@ -72,13 +72,31 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: ./gradlew app:assembleRelease app:bundleRelease
 
+      - name: Normalize Android release outputs
+        run: |
+          set -e
+          echo "APK outputs:"
+          find android/app/build/outputs/apk -type f -name '*.apk' -print || true
+          echo "AAB outputs:"
+          find android/app/build/outputs/bundle -type f -name '*.aab' -print || true
+
+          APK_SOURCE="$(find android/app/build/outputs/apk -type f -name '*.apk' | head -n 1)"
+          AAB_SOURCE="$(find android/app/build/outputs/bundle -type f -name '*.aab' | head -n 1)"
+
+          test -n "$APK_SOURCE" || (echo "No release APK was produced" && exit 1)
+          test -n "$AAB_SOURCE" || (echo "No release AAB was produced" && exit 1)
+
+          mkdir -p android/app/build/outputs/apk/release android/app/build/outputs/bundle/release
+          cp "$APK_SOURCE" android/app/build/outputs/apk/release/app-release.apk
+          cp "$AAB_SOURCE" android/app/build/outputs/bundle/release/app-release.aab
+
       - name: Verify signed release APK and AAB
         run: |
+          set -e
           test -f android/app/build/outputs/apk/release/app-release.apk
           test -f android/app/build/outputs/bundle/release/app-release.aab
-          jarsigner -verify -verbose -certs android/app/build/outputs/apk/release/app-release.apk >/tmp/apk-jarsigner.txt
+          apksigner verify --verbose android/app/build/outputs/apk/release/app-release.apk
           jarsigner -verify -verbose -certs android/app/build/outputs/bundle/release/app-release.aab >/tmp/aab-jarsigner.txt
-          grep -q "jar verified" /tmp/apk-jarsigner.txt
           grep -q "jar verified" /tmp/aab-jarsigner.txt
 
       - name: Upload Android build artifacts

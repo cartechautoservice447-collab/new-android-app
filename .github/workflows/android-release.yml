@@ -86,9 +86,22 @@ jobs:
           test -n "$APK_SOURCE" || (echo "No release APK was produced" && exit 1)
           test -n "$AAB_SOURCE" || (echo "No release AAB was produced" && exit 1)
 
+          APK_TARGET="android/app/build/outputs/apk/release/app-release.apk"
+          AAB_TARGET="android/app/build/outputs/bundle/release/app-release.aab"
+
           mkdir -p android/app/build/outputs/apk/release android/app/build/outputs/bundle/release
-          cp "$APK_SOURCE" android/app/build/outputs/apk/release/app-release.apk
-          cp "$AAB_SOURCE" android/app/build/outputs/bundle/release/app-release.aab
+
+          if [ "$APK_SOURCE" != "$APK_TARGET" ]; then
+            cp "$APK_SOURCE" "$APK_TARGET"
+          else
+            echo "APK already exists at target: $APK_TARGET"
+          fi
+
+          if [ "$AAB_SOURCE" != "$AAB_TARGET" ]; then
+            cp "$AAB_SOURCE" "$AAB_TARGET"
+          else
+            echo "AAB already exists at target: $AAB_TARGET"
+          fi
 
       - name: Verify signed release APK and AAB
         run: |

@@ -1,0 +1,6 @@
+{
+  "name": "Liquid Glass Studio",
+  "description": "Mobile study workspace with course folders, rich markdown notes, Pomodoro focus sessions, daily planner, and liquid glass aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

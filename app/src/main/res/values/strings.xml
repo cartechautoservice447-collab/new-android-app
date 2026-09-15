@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Liquid Glass</string>
+    <string name="app_full_name">Liquid Glass Studio</string>
+    <string name="title_activity_main">Liquid Glass Studio</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_study_hub">Study Hub</string>
+    <string name="action_overview">Overview</string>
+    <string name="action_daily_planner">Daily Planner</string>
+    <string name="add_new_course">Add New Course</string>
+    <string name="create_collection">Create Collection</string>
+    <string name="new_note">New Note</string>
+    <string name="save_note">Save Note</string>
+</resources>

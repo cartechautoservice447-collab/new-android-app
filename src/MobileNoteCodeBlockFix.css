@@ -1,0 +1,50 @@
+/* Final code-block isolation.
+   Inline-code styling must never leak into fenced code blocks. */
+.mobile-note-editor .generated-preview-content article pre,
+.mobile-note-editor .generated-preview-content article pre code,
+.mobile-note-editor .generated-preview-content article .preview-code pre,
+.mobile-note-editor .generated-preview-content article .preview-code pre code{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+/* Keep fenced code as one continuous code surface. Tokens provide color only. */
+.mobile-note-editor .generated-preview-content article .preview-code pre code{
+  display:inline!important;
+  font:inherit!important;
+  color:inherit!important;
+  letter-spacing:inherit!important;
+  line-height:inherit!important;
+  white-space:pre!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+}
+
+.mobile-note-editor .generated-preview-content article .preview-code .token,
+.mobile-note-editor .generated-preview-content article .preview-code .tok-keyword,
+.mobile-note-editor .generated-preview-content article .preview-code .tok-string,
+.mobile-note-editor .generated-preview-content article .preview-code .tok-number,
+.mobile-note-editor .generated-preview-content article .preview-code .tok-comment,
+.mobile-note-editor .generated-preview-content article .preview-code .tok-function,
+.mobile-note-editor .generated-preview-content article .preview-code .tok-builtin,
+.mobile-note-editor .generated-preview-content article .preview-code .tok-decorator{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+  border-radius:0!important;
+}
+
+/* Readability changes apply to prose/edit text, not code. Code keeps a stable size and
+   uses horizontal scrolling when a line is wider than the phone viewport. */
+.mobile-note-editor .preview-code pre{
+  white-space:pre!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+}

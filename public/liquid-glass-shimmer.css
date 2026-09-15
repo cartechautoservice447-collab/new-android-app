@@ -1,0 +1,35 @@
+/*
+ * Build 3 — Liquid Glass Shimmer Progress.
+ * Applies only to existing progress fills; no glass surface/material is changed.
+ */
+.glass-shimmer-progress{
+  position:relative!important;
+  isolation:isolate;
+  overflow:hidden!important;
+}
+
+.glass-shimmer-progress::after{
+  content:"";
+  position:absolute;
+  inset:-40% auto -40% -42%;
+  width:28%;
+  min-width:26px;
+  max-width:56px;
+  pointer-events:none;
+  border-radius:999px;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.02) 28%,rgba(255,255,255,.46) 50%,rgba(255,255,255,.04) 72%,transparent 100%);
+  filter:blur(1px);
+  transform:translate3d(-135%,0,0) skewX(-16deg);
+  animation:glass-shimmer-sweep 1.9s linear infinite;
+  animation-delay:var(--shimmer-delay,0s);
+  opacity:.72;
+}
+
+@keyframes glass-shimmer-sweep{
+  from{transform:translate3d(-135%,0,0) skewX(-16deg)}
+  to{transform:translate3d(540%,0,0) skewX(-16deg)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .glass-shimmer-progress::after{animation:none!important;opacity:0!important}
+}

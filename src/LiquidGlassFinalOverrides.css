@@ -1,0 +1,256 @@
+/* Final unification layer for the reference Liquid Glass engine. */
+.course-dashboard-card .course-open::before,
+.collection-note-card::before,
+.collection-workspace-screen .collection-note-card::before,
+.course-folder-card::before{filter:url(#liquid-refraction)!important}
+
+/* The shared stage is the visual source behind every glass surface. */
+.app-root-layer{background:transparent!important}
+
+/* Match the reference five-part water-gel surface on generic Mobile glass containers. */
+.app-root-layer .glass-card,
+.app-root-layer .full-glass-panel{
+  background-color:var(--water-gel-bg)!important;
+  background-image:linear-gradient(135deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.02) 55%,rgba(255,255,255,.09) 100%)!important;
+  backdrop-filter:blur(var(--liquid-density,12px)) saturate(200%) contrast(105%)!important;
+  -webkit-backdrop-filter:blur(var(--liquid-density,12px)) saturate(200%) contrast(105%)!important;
+  border:1px solid rgba(255,255,255,.22);
+  border-top-color:rgba(255,255,255,.4);
+  border-radius:calc(18px + var(--liquid-gel,.55)*26px);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.18),0 8px 32px rgba(0,0,0,.22);
+}
+
+/* Course dashboard uses an outer structural wrapper plus one real water-gel surface.
+   Keep the wrapper transparent so it cannot double-blur/fog the card. */
+.app-root-layer .course-dashboard-card{
+  background:transparent!important;
+  background-image:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.app-root-layer .course-dashboard-card .course-open{
+  background-color:var(--water-gel-bg)!important;
+  background-image:linear-gradient(135deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.02) 55%,rgba(255,255,255,.09) 100%)!important;
+  backdrop-filter:blur(var(--liquid-density,12px)) saturate(200%) contrast(105%)!important;
+  -webkit-backdrop-filter:blur(var(--liquid-density,12px)) saturate(200%) contrast(105%)!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+  border-top-color:rgba(255,255,255,.4)!important;
+  border-radius:inherit;
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -2px 4px rgba(0,0,0,.25),0 8px 32px rgba(0,0,0,.37)!important;
+}
+
+/* Course cards must have only one refractive pass: keep the sheen crisp and
+   use a subtle rim instead of filtering the entire card surface. */
+.app-root-layer .course-dashboard-card .course-open::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,.018) 55%,rgba(255,255,255,.07) 100%);
+  filter:none!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+}
+.app-root-layer .course-dashboard-card .course-open::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:radial-gradient(140% 100% at 0% 0%,color-mix(in oklab,var(--course-accent,#72d7ff) 28%,transparent),transparent 60%);
+  opacity:.82;
+}
+.app-root-layer .course-dashboard-card .course-open>*{position:relative;z-index:1}
+.app-root-layer .course-dashboard-card .folder-icon{box-shadow:inset 0 1px 2px rgba(255,255,255,.32),0 8px 22px rgba(0,0,0,.1)}
+.app-root-layer .course-dashboard-card .note-pill{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.15);box-shadow:inset 0 1px rgba(255,255,255,.18)}
+
+/* Keep intentionally dark editor canvases readable; only their enclosing glass remains liquid. */
+.app-root-layer .generated-editor-pane,
+.app-root-layer .generated-preview-pane,
+.app-root-layer .note-preview,
+.app-root-layer .document-output{background-color:initial}
+
+/* Glass utility controls use the same translucent lens language. */
+.app-root-layer .icon-button,
+.app-root-layer .back-button,
+.app-root-layer .course-mini-action,
+.app-root-layer .modal-close,
+.app-root-layer .collection-note-count,
+.app-root-layer .performance-control,
+.app-root-layer .engine-chip,
+.app-root-layer .engine-performance-switch button,
+.app-root-layer .engine-theme-pair button,
+.app-root-layer .engine-reset-button{
+  border-color:rgba(255,255,255,.25);
+  background:rgba(255,255,255,.10);
+  box-shadow:inset 0 1px rgba(255,255,255,.18);
+  backdrop-filter:blur(calc(var(--liquid-density,12px) * .8)) saturate(180%);
+  -webkit-backdrop-filter:blur(calc(var(--liquid-density,12px) * .8)) saturate(180%);
+}
+
+.dark .app-root-layer .glass-card,
+.dark .app-root-layer .full-glass-panel{background-image:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.015) 55%,rgba(255,255,255,.06))!important}
+
+@media(prefers-reduced-motion:reduce){.app-root-layer .glass-card,.app-root-layer .full-glass-panel{transition:none!important}}
+
+/* -------------------------------------------------------------------------- */
+/* Global Glass Theme engine                                                   */
+/*                                                                            */
+/* One selected theme changes the surface recipe everywhere.                 */
+/* Intentionally non-glass editor/content canvases are excluded.              */
+/* -------------------------------------------------------------------------- */
+
+html[data-glass-theme="type-1"]{
+  --glass-theme-bg:var(--water-gel-bg,rgb(255 255 255 / .45));
+  --glass-theme-sheen:linear-gradient(135deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.02) 55%,rgba(255,255,255,.09) 100%);
+  --glass-theme-border:rgba(255,255,255,.22);
+  --glass-theme-top-border:rgba(255,255,255,.40);
+  --glass-theme-radius:calc(18px + var(--liquid-gel,.55)*26px);
+  --glass-theme-shadow:inset 0 1px 2px rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.18),0 8px 32px rgba(0,0,0,.22);
+  --glass-theme-blur:var(--liquid-density,12px);
+  --glass-theme-saturation:200%;
+}
+
+html[data-glass-theme="type-2"]{
+  --glass-theme-bg:var(--water-gel-bg,rgb(255 255 255 / .45));
+  --glass-theme-sheen:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.035) 55%,rgba(255,255,255,.10));
+  --glass-theme-border:rgba(210,239,255,.24);
+  --glass-theme-top-border:rgba(255,255,255,.46);
+  --glass-theme-radius:calc(18px + var(--liquid-gel,.55)*26px);
+  --glass-theme-shadow:inset 0 1px 2px rgba(255,255,255,.48),inset 0 -3px 7px rgba(8,12,50,.20),0 10px 30px rgba(0,0,0,.24);
+  --glass-theme-blur:var(--liquid-density,12px);
+  --glass-theme-saturation:200%;
+}
+
+html[data-glass-theme="type-3"]{
+  --glass-theme-bg:rgb(255 255 255 / calc(var(--liquid-glass-alpha,.45) * .52));
+  --glass-theme-sheen:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.025));
+  --glass-theme-border:rgba(190,235,255,.14);
+  --glass-theme-top-border:rgba(255,255,255,.28);
+  --glass-theme-radius:16px;
+  --glass-theme-shadow:inset 0 1px 1px rgba(255,255,255,.16),inset 0 -2px 6px rgba(0,0,0,.12),0 10px 26px rgba(0,0,0,.14);
+  --glass-theme-blur:calc(var(--liquid-density,12px) * .9);
+  --glass-theme-saturation:180%;
+}
+
+html[data-glass-theme="type-4"]{
+  --glass-theme-bg:var(--water-gel-bg,rgb(255 255 255 / .45));
+  --glass-theme-sheen:linear-gradient(145deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.055) 42%,rgba(255,255,255,.02) 62%,rgba(255,255,255,.11) 100%);
+  --glass-theme-border:rgba(220,240,255,.30);
+  --glass-theme-top-border:rgba(255,255,255,.52);
+  --glass-theme-radius:calc(18px + var(--liquid-gel,.55)*26px);
+  --glass-theme-shadow:inset 0 1px 2px rgba(255,255,255,.50),inset 0 -3px 7px rgba(10,14,55,.22),0 9px 28px rgba(0,0,0,.28);
+  --glass-theme-blur:var(--liquid-density,12px);
+  --glass-theme-saturation:200%;
+}
+
+/* All real glass surfaces inherit the selected global recipe. */
+html[data-glass-theme] .app-root-layer .glass-card:not(.course-dashboard-card),
+html[data-glass-theme] .app-root-layer .full-glass-panel,
+html[data-glass-theme] .app-root-layer .glass-inner,
+html[data-glass-theme] .app-root-layer .dashboard-header,
+html[data-glass-theme] .app-root-layer .action-card,
+html[data-glass-theme] .app-root-layer .add-course-bar,
+html[data-glass-theme] .app-root-layer .course-open,
+html[data-glass-theme] .app-root-layer .course-workspace-progress,
+html[data-glass-theme] .app-root-layer .course-tool-folder,
+html[data-glass-theme] .app-root-layer .course-folder-card,
+html[data-glass-theme] .app-root-layer .glass-list-item,
+html[data-glass-theme] .app-root-layer .collection-note-card,
+html[data-glass-theme] .app-root-layer .generated-editor-glass,
+html[data-glass-theme] .app-root-layer .course-folder-panel{
+  background-color:var(--glass-theme-bg)!important;
+  background-image:var(--glass-theme-sheen)!important;
+  backdrop-filter:blur(var(--glass-theme-blur)) saturate(var(--glass-theme-saturation)) contrast(105%)!important;
+  -webkit-backdrop-filter:blur(var(--glass-theme-blur)) saturate(var(--glass-theme-saturation)) contrast(105%)!important;
+  border-color:var(--glass-theme-border)!important;
+  border-top-color:var(--glass-theme-top-border)!important;
+  border-radius:var(--glass-theme-radius)!important;
+  box-shadow:var(--glass-theme-shadow)!important;
+}
+
+/* Type 2's defining course-card accent lens follows the selected global recipe. */
+html[data-glass-theme="type-2"] .app-root-layer .course-open::after,
+html[data-glass-theme="type-4"] .app-root-layer .course-open::after{
+  background:radial-gradient(140% 100% at 0% 0%,color-mix(in oklab,var(--course-accent,#72d7ff) 35%,transparent),transparent 60%)!important;
+  opacity:.9!important;
+}
+
+/* Type 3 deliberately makes every panel feel like the course progress surface. */
+html[data-glass-theme="type-3"] .app-root-layer .course-open::after,
+html[data-glass-theme="type-3"] .app-root-layer .collection-note-card::after,
+html[data-glass-theme="type-3"] .app-root-layer .course-folder-card::before{
+  opacity:.28!important;
+}
+html[data-glass-theme="type-3"] .app-root-layer .course-open::before,
+html[data-glass-theme="type-3"] .app-root-layer .collection-note-card::before,
+html[data-glass-theme="type-3"] .app-root-layer .course-folder-card::before{filter:none!important}
+
+/* Type 4 carries the saved-note card's extra inner light/veil treatment. */
+html[data-glass-theme="type-4"] .app-root-layer .glass-card:not(.course-dashboard-card)::after,
+html[data-glass-theme="type-4"] .app-root-layer .glass-inner::after,
+html[data-glass-theme="type-4"] .app-root-layer .action-card::after,
+html[data-glass-theme="type-4"] .app-root-layer .course-workspace-progress::after,
+html[data-glass-theme="type-4"] .app-root-layer .course-tool-folder::after,
+html[data-glass-theme="type-4"] .app-root-layer .glass-list-item::after,
+html[data-glass-theme="type-4"] .app-root-layer .generated-editor-glass::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:radial-gradient(120% 140% at 0% 0%,rgba(255,255,255,.18),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(7,12,45,.08));
+  opacity:1;
+}
+html[data-glass-theme="type-4"] .app-root-layer .glass-card:not(.course-dashboard-card) > *,
+html[data-glass-theme="type-4"] .app-root-layer .glass-inner > *,
+html[data-glass-theme="type-4"] .app-root-layer .action-card > *,
+html[data-glass-theme="type-4"] .app-root-layer .course-workspace-progress > *,
+html[data-glass-theme="type-4"] .app-root-layer .course-tool-folder > *,
+html[data-glass-theme="type-4"] .app-root-layer .glass-list-item > *,
+html[data-glass-theme="type-4"] .app-root-layer .generated-editor-glass > *{position:relative;z-index:1}
+
+/* Course card remains one physical surface under every theme; never reintroduce wrapper fog. */
+html[data-glass-theme] .app-root-layer .course-dashboard-card{
+  background:transparent!important;
+  background-image:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+html[data-glass-theme] .app-root-layer .course-dashboard-card .course-open{
+  background-color:var(--glass-theme-bg)!important;
+  background-image:var(--glass-theme-sheen)!important;
+  backdrop-filter:blur(var(--glass-theme-blur)) saturate(var(--glass-theme-saturation)) contrast(105%)!important;
+  -webkit-backdrop-filter:blur(var(--glass-theme-blur)) saturate(var(--glass-theme-saturation)) contrast(105%)!important;
+  border:1px solid var(--glass-theme-border)!important;
+  border-top-color:var(--glass-theme-top-border)!important;
+  border-radius:inherit;
+  box-shadow:var(--glass-theme-shadow)!important;
+}
+
+/* Theme preview chips in Engine Settings. */
+.engine-glass-theme-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+.engine-glass-theme{min-width:0;display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;gap:10px;padding:10px;border:1px solid rgba(255,255,255,.16);border-radius:18px;color:#fff;background:rgba(255,255,255,.055);box-shadow:inset 0 1px rgba(255,255,255,.12);text-align:left;cursor:pointer}
+.engine-glass-theme:hover{background:rgba(255,255,255,.09)}
+.engine-glass-theme.active{border-color:rgba(160,225,255,.58);background:rgba(255,255,255,.105);box-shadow:inset 0 1px rgba(255,255,255,.24),0 0 0 1px rgba(130,210,255,.12)}
+.engine-glass-theme-sample{width:52px;height:40px;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.24);box-shadow:inset 0 1px rgba(255,255,255,.28),0 8px 18px rgba(0,0,0,.14);background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.035));backdrop-filter:blur(10px) saturate(180%)}
+.engine-glass-theme-sample[data-glass-preview="type-2"]{background:radial-gradient(circle at 0% 0%,rgba(114,215,255,.40),transparent 58%),linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.035))}
+.engine-glass-theme-sample[data-glass-preview="type-3"]{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.025));border-radius:10px}
+.engine-glass-theme-sample[data-glass-preview="type-4"]{background:radial-gradient(circle at 0% 0%,rgba(255,255,255,.20),transparent 58%),linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.045));box-shadow:inset 0 1px rgba(255,255,255,.32),inset 0 -2px 4px rgba(0,0,0,.10),0 8px 18px rgba(0,0,0,.16)}
+.engine-glass-theme-copy{min-width:0;display:grid;gap:3px}
+.engine-glass-theme-copy strong{font-size:12px}
+.engine-glass-theme-copy small{color:rgba(255,255,255,.48);font-size:9px;line-height:1.3}
+@media(max-width:430px){.engine-glass-theme-grid{grid-template-columns:1fr}.engine-glass-theme{grid-template-columns:48px minmax(0,1fr)}.engine-glass-theme-sample{width:48px}}
+
+.dark .app-root-layer .glass-card,
+.dark .app-root-layer .full-glass-panel{background-image:var(--glass-theme-sheen,linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.015) 55%,rgba(255,255,255,.06)))!important}
+
+@media(prefers-reduced-motion:reduce){.app-root-layer .glass-card,.app-root-layer .full-glass-panel{transition:none!important}}

@@ -1,0 +1,453 @@
+/* DailyPlannerPage.css
+   All surfaces reuse the existing Liquid Glass design tokens:
+   --glass-theme-bg, --glass-theme-border, --glass-theme-blur, etc.
+   No custom material is introduced.
+*/
+
+/* ── Screen layout ────────────────────────────────────────────────────────── */
+.planner-screen { display: flex; flex-direction: column; min-height: 100dvh; }
+
+.planner-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.planner-header {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 14px 10px;
+}
+
+.planner-add-btn {
+  justify-self: end;
+}
+
+/* ── View tabs ────────────────────────────────────────────────────────────── */
+.planner-view-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 0 14px 10px;
+}
+
+.planner-tab {
+  flex: 1;
+  min-height: 38px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-theme-border, rgba(255,255,255,.22));
+  border-top-color: var(--glass-theme-top-border, rgba(255,255,255,.40));
+  background-color: var(--glass-theme-bg, rgba(255,255,255,.28));
+  background-image: var(--glass-theme-sheen);
+  backdrop-filter: blur(var(--glass-theme-blur, 12px)) saturate(200%);
+  -webkit-backdrop-filter: blur(var(--glass-theme-blur, 12px)) saturate(200%);
+  color: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .18s ease, opacity .18s ease;
+  opacity: .62;
+}
+
+.planner-tab.active {
+  opacity: 1;
+  border-color: rgba(255,255,255,.42);
+}
+
+.planner-tab:hover { opacity: .85; transform: translateY(-1px); }
+
+/* ── Stats bar ────────────────────────────────────────────────────────────── */
+.planner-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 14px 12px;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.planner-stat { text-align: center; }
+
+.planner-stat span {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  opacity: .52;
+}
+
+.planner-stat strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 22px;
+  letter-spacing: -.03em;
+}
+
+/* ── Content area ─────────────────────────────────────────────────────────── */
+.planner-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 14px;
+}
+
+.planner-loading {
+  padding: 32px;
+  text-align: center;
+  opacity: .5;
+  font-size: 13px;
+}
+
+/* ── Item list ────────────────────────────────────────────────────────────── */
+.planner-list {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 16px;
+}
+
+/* ── Item card ────────────────────────────────────────────────────────────── */
+.planner-item-card {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px 11px 10px;
+  border-radius: 16px;
+}
+
+.planner-item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  flex-shrink: 0;
+}
+
+.planner-item-body {
+  min-width: 0;
+}
+
+.planner-item-body strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.planner-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 10px;
+  opacity: .55;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.planner-item-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.planner-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.planner-notif-btn.notif-on { color: #72d7ff; }
+.planner-notif-btn.notif-off { opacity: .4; }
+
+.planner-delete-btn { color: #ff88a8; opacity: .7; }
+.planner-delete-btn:hover { opacity: 1; }
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.planner-empty {
+  padding: 24px 16px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.planner-empty-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.planner-empty h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  letter-spacing: -.02em;
+}
+
+.planner-empty p {
+  margin: 0 auto 16px;
+  max-width: 36ch;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: .6;
+}
+
+.planner-examples {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.planner-example {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 11px;
+  opacity: .72;
+}
+
+.planner-empty-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── UTC note ─────────────────────────────────────────────────────────────── */
+.planner-utc-note {
+  margin: 10px 14px 0;
+  font-size: 9px;
+  opacity: .38;
+  text-align: center;
+  letter-spacing: .04em;
+}
+
+.planner-message {
+  margin: 8px 14px;
+}
+
+/* ── Modal backdrop ───────────────────────────────────────────────────────── */
+.planner-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  animation: planner-fade-in .2s ease;
+}
+
+.planner-modal {
+  width: min(520px, calc(100vw - 24px));
+  max-height: min(88vh, 680px);
+  border-radius: var(--glass-theme-radius, 22px) !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: planner-slide-in .25s cubic-bezier(.2,.8,.2,1);
+}
+
+.planner-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px 12px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  flex-shrink: 0;
+}
+
+.planner-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -.025em;
+}
+
+.planner-modal-close { opacity: .7; }
+.planner-modal-close:hover { opacity: 1; }
+
+/* ── Form ─────────────────────────────────────────────────────────────────── */
+.planner-form {
+  overflow-y: auto;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  flex: 1;
+}
+
+.planner-field {
+  display: grid;
+  gap: 6px;
+}
+
+.planner-field > span,
+.planner-field > label > span {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  opacity: .55;
+  font-weight: 700;
+}
+
+.planner-field input,
+.planner-field select {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-theme-border, rgba(255,255,255,.22));
+  background-color: var(--glass-theme-bg, rgba(255,255,255,.28));
+  color: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.planner-field select {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 32px;
+}
+
+.planner-field input:focus,
+.planner-field select:focus {
+  outline: 2px solid rgba(113,215,255,.55);
+  outline-offset: 1px;
+}
+
+/* ── Chip rows ────────────────────────────────────────────────────────────── */
+.planner-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.planner-chip {
+  padding: 6px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-theme-border, rgba(255,255,255,.22));
+  background-color: var(--glass-theme-bg, rgba(255,255,255,.12));
+  color: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease;
+  opacity: .65;
+}
+
+.planner-chip.active {
+  opacity: 1;
+  border-color: rgba(113,215,255,.55);
+  background: rgba(113,215,255,.12);
+}
+
+.planner-chip:hover { transform: translateY(-1px); opacity: .85; }
+
+/* ── Day chips ────────────────────────────────────────────────────────────── */
+.planner-day-row {
+  display: flex;
+  gap: 5px;
+}
+
+.planner-day-chip {
+  flex: 1;
+  min-height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-theme-border, rgba(255,255,255,.22));
+  background-color: var(--glass-theme-bg, rgba(255,255,255,.12));
+  color: inherit;
+  font-size: 10px;
+  cursor: pointer;
+  transition: transform .15s ease;
+  opacity: .55;
+}
+
+.planner-day-chip.active {
+  opacity: 1;
+  border-color: rgba(113,215,255,.55);
+  background: rgba(113,215,255,.12);
+}
+
+/* ── Toggle ───────────────────────────────────────────────────────────────── */
+.planner-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.planner-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-theme-border, rgba(255,255,255,.22));
+  background-color: var(--glass-theme-bg, rgba(255,255,255,.12));
+  color: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: .55;
+  transition: opacity .15s ease;
+}
+
+.planner-toggle.on {
+  opacity: 1;
+  border-color: rgba(113,215,255,.55);
+  color: #72d7ff;
+}
+
+/* ── Form actions ─────────────────────────────────────────────────────────── */
+.planner-form-actions {
+  padding-top: 4px;
+}
+
+.planner-form-actions .primary-button {
+  width: 100%;
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+@keyframes planner-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes planner-slide-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .planner-chip-row { gap: 4px; }
+  .planner-chip { padding: 5px 9px; font-size: 10px; }
+  .planner-day-chip { font-size: 9px; min-height: 34px; }
+  .planner-modal { max-height: 92vh; border-radius: var(--glass-theme-radius, 20px) !important; }
+  .planner-item-card { grid-template-columns: 36px minmax(0, 1fr) auto; padding: 10px 10px 10px 8px; }
+  .planner-item-icon { width: 36px; height: 36px; font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planner-modal, .planner-modal-backdrop, .planner-chip, .planner-day-chip, .planner-tab { animation: none !important; transition: none !important; }
+}

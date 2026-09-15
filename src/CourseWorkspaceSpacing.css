@@ -1,0 +1,166 @@
+/* Course workspace viewport + breathing room stability layer. */
+.course-workspace-screen{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:100dvh!important;
+  min-height:0!important;
+  max-height:100dvh!important;
+  padding:0!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:none!important;
+  overscroll-behavior-y:auto!important;
+  touch-action:pan-y!important;
+}
+
+.course-workspace-screen .course-workspace-panel{
+  width:calc(100vw - 12px)!important;
+  min-height:calc(100dvh - 12px)!important;
+  height:auto!important;
+  max-height:none!important;
+  margin:6px!important;
+  padding-top:13px!important;
+  padding-bottom:18px!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+
+/* Give the back/action row clear visual separation from the first course glass surface. */
+.course-workspace-screen .course-workspace-header{
+  margin-bottom:32px!important;
+}
+
+/* Keep each Course glass surface visually independent. */
+.course-workspace-screen .course-workspace-hero,
+.course-workspace-screen .course-workspace-progress,
+.course-workspace-screen .course-tool-folder{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+
+.course-workspace-screen .course-workspace-hero{
+  margin-bottom:16px!important;
+}
+.course-workspace-screen .course-workspace-progress{
+  margin-top:0!important;
+}
+.course-workspace-screen .course-workspace-section-heading{
+  margin-top:22px!important;
+  margin-bottom:12px!important;
+}
+.course-workspace-screen .course-workspace-tools{
+  gap:13px!important;
+}
+
+/* Keep glass veils behind Course content. */
+.course-workspace-screen .course-workspace-hero::after,
+.course-workspace-screen .course-workspace-hero::before,
+.course-workspace-screen .course-workspace-progress::after,
+.course-workspace-screen .course-workspace-progress::before,
+.course-workspace-screen .course-tool-folder::after,
+.course-workspace-screen .course-tool-folder::before{
+  z-index:0;
+  pointer-events:none;
+}
+.course-workspace-screen .course-workspace-hero>* ,
+.course-workspace-screen .course-workspace-progress>* ,
+.course-workspace-screen .course-tool-folder>*{
+  position:relative;
+  z-index:1;
+}
+
+/* Never let text or icons escape their glass surfaces. */
+.course-workspace-screen .course-workspace-hero,
+.course-workspace-screen .course-workspace-progress,
+.course-workspace-screen .course-tool-folder,
+.course-workspace-screen .course-workspace-copy,
+.course-workspace-screen .course-tool-copy{
+  min-width:0;
+  max-width:100%;
+}
+.course-workspace-screen .course-workspace-copy,
+.course-workspace-screen .course-tool-copy{
+  overflow:hidden;
+}
+.course-workspace-screen .course-workspace-copy,
+.course-workspace-screen .course-workspace-copy p,
+.course-workspace-screen .course-tool-copy strong,
+.course-workspace-screen .course-tool-copy small{
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+.course-workspace-screen .course-workspace-title,
+.course-workspace-screen .course-workspace-title h1,
+.course-workspace-screen .course-workspace-title-row h2{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.course-workspace-screen .course-workspace-title h1{white-space:nowrap;}
+.course-workspace-screen .course-workspace-badge{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.course-workspace-screen .course-workspace-progress-heading,
+.course-workspace-screen .course-workspace-progress-meta{min-width:0;}
+.course-workspace-screen .course-workspace-progress-heading>* ,
+.course-workspace-screen .course-workspace-progress-meta>*{min-width:0;overflow-wrap:anywhere;}
+.course-workspace-screen .course-workspace-tools{width:100%;}
+.course-workspace-screen .course-tool-copy small{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;}
+.course-workspace-screen .course-tool-arrow{min-width:20px;}
+.course-workspace-screen button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.course-workspace-screen .course-workspace-header .back-button,
+.course-workspace-screen .course-mini-action{
+  flex:0 0 auto;
+  min-width:44px;
+  min-height:44px;
+}
+
+@media(max-width:430px){
+  .course-workspace-screen{
+    height:100dvh!important;
+    min-height:0!important;
+    max-height:100dvh!important;
+  }
+  .course-workspace-screen .course-workspace-panel{
+    width:calc(100vw - 8px)!important;
+    min-height:calc(100dvh - 8px)!important;
+    margin:4px!important;
+    padding:12px 9px 16px!important;
+    border-radius:24px;
+  }
+  .course-workspace-screen .course-workspace-header{
+    grid-template-columns:44px minmax(0,1fr) 44px;
+    column-gap:7px;
+    margin-bottom:28px!important;
+  }
+  .course-workspace-screen .course-workspace-hero{
+    margin-bottom:14px!important;
+  }
+  .course-workspace-screen .course-workspace-section-heading{
+    margin-top:20px!important;
+    margin-bottom:11px!important;
+  }
+  .course-workspace-screen .course-workspace-tools{gap:12px!important;}
+}
+
+@media(max-width:360px){
+  .course-workspace-screen .course-workspace-panel{padding:11px 8px 16px!important;border-radius:22px;}
+  .course-workspace-screen .course-workspace-header{margin-bottom:25px!important;}
+  .course-workspace-screen .course-workspace-hero{margin-bottom:13px!important;}
+  .course-workspace-screen .course-workspace-section-heading{margin-top:18px!important;}
+  .course-workspace-screen .course-workspace-tools{gap:11px!important;}
+}
+
+@media(max-width:330px){
+  .course-workspace-screen .course-workspace-panel{padding:10px 7px 15px!important;border-radius:20px;}
+  .course-workspace-screen .course-workspace-header{margin-bottom:23px!important;}
+  .course-workspace-screen .course-workspace-hero{margin-bottom:12px!important;}
+  .course-workspace-screen .course-workspace-section-heading{margin-top:17px!important;margin-bottom:10px!important;}
+  .course-workspace-screen .course-workspace-tools{gap:10px!important;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .course-workspace-screen *{transition:none!important;}
+}

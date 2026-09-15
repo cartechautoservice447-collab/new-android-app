@@ -1,0 +1,74 @@
+.pomodoro-ring{
+  position: relative;
+  width: min(280px, 100%);
+  height: min(280px, 100%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(120,170,255,.10), rgba(10,14,30,.35) 70%);
+  border: 1px solid rgba(255,255,255,.08);
+  box-sizing: border-box;
+}
+
+.pomodoro-ring > svg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: rotate(-90deg);
+}
+
+.pomodoro-ring > svg circle{
+  vector-effect: non-scaling-stroke;
+}
+
+.pomodoro-ring-arc{
+  stroke: #eaf6ff;
+  filter: drop-shadow(0 0 8px rgba(120,190,255,.9)) drop-shadow(0 0 16px rgba(80,150,255,.5));
+}
+
+.pomodoro-ring-dot{
+  filter: drop-shadow(0 0 6px rgba(255,255,255,1)) drop-shadow(0 0 12px rgba(140,200,255,.9));
+}
+
+.pomodoro-ring-content{
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f7fbff;
+  pointer-events: none;
+}
+
+.pomodoro-ring-label{
+  margin: 0;
+  color: rgba(225,243,255,.55);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.pomodoro-ring-time{
+  display: block;
+  margin-top: 4px;
+  color: #f7fbff;
+  font-size: clamp(44px, 8vw, 70px);
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: -.05em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 430px){
+  .pomodoro-ring{ width: 250px; height: 250px; }
+  .pomodoro-ring-time{ font-size: 48px; }
+}

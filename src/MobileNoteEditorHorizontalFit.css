@@ -1,0 +1,48 @@
+/* Keep the dark editor/preview surface flush to the inner left/right edges of the outer curved glass. */
+.mobile-note-editor .generated-workarea{
+  width:calc(100% + 24px);
+  max-width:none;
+  margin-left:-12px;
+  margin-right:-12px;
+  padding:0;
+  border-left:1px solid rgba(32,41,55,.96);
+  border-right:1px solid rgba(32,41,55,.96);
+  box-sizing:border-box;
+}
+.mobile-note-editor .generated-preview-pane,
+.mobile-note-editor .generated-editor-pane{
+  width:100%;
+  max-width:none;
+  margin:0;
+  box-sizing:border-box;
+}
+.mobile-note-editor .generated-preview-pane{padding:0!important;}
+.mobile-note-editor .generated-preview-content{
+  width:100%;
+  min-width:0;
+  max-width:none;
+  margin:0;
+  box-sizing:border-box;
+}
+.mobile-note-editor .generated-preview-content article{
+  width:100%;
+  max-width:none;
+  box-sizing:border-box;
+  margin:0;
+}
+.mobile-note-editor .preview-code,
+.mobile-note-editor .preview-table-wrap,
+.mobile-note-editor .preview-callout{
+  width:100%;
+  max-width:none;
+  box-sizing:border-box;
+}
+@media (max-width:520px){
+  .mobile-note-editor .generated-workarea{
+    width:calc(100% + 18px);
+    margin-left:-9px;
+    margin-right:-9px;
+  }
+  .mobile-note-editor .generated-editor-pane{padding-left:9px;padding-right:9px;}
+  .mobile-note-editor .generated-preview-content article{padding-left:12px;padding-right:12px;}
+}

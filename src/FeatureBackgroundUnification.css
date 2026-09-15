@@ -1,0 +1,42 @@
+/* Shared feature-screen background sampled from the current approved mobile reference. */
+:root{
+  --feature-stage-background:
+    radial-gradient(80% 36% at 8% 3%,rgba(80,119,248,.95),transparent 70%),
+    radial-gradient(76% 34% at 96% 4%,rgba(92,57,205,.94),transparent 70%),
+    radial-gradient(72% 62% at 102% 57%,rgba(36,119,143,.82),transparent 68%),
+    radial-gradient(76% 58% at 56% 100%,rgba(150,28,157,.94),transparent 71%),
+    radial-gradient(60% 54% at 0% 86%,rgba(38,24,67,.92),transparent 72%),
+    linear-gradient(145deg,#2d5fd8 0%,#183d98 43%,#20183f 78%,#641b70 100%);
+}
+
+/* Every course/notes feature page uses the same visual stage as the approved reference.
+   Only the outer feature surface changes; internal glass cards remain untouched. */
+.app-root-layer .feature-screen{
+  background:transparent!important;
+}
+
+.app-root-layer .feature-screen > section{
+  background:var(--feature-stage-background)!important;
+  background-color:transparent!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-position:center!important;
+  color:#eaf6ff;
+}
+
+/* Collection Workspace owns its own full-screen editor glass and therefore needs
+   the shared stage explicitly while preserving all of its internal glass controls. */
+.app-root-layer .collection-workspace-screen .generated-editor-glass.collection-workspace{
+  background:var(--feature-stage-background)!important;
+  background-color:transparent!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+
+@media(max-width:430px){
+  .app-root-layer .feature-screen > section,
+  .app-root-layer .collection-workspace-screen .generated-editor-glass.collection-workspace{
+    background-size:cover!important;
+  }
+}

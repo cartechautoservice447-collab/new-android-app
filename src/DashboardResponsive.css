@@ -1,0 +1,184 @@
+/* Dashboard-only responsive audit + sizing hardening. */
+.dashboard-screen{
+  overflow-x:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-gutter:stable;
+}
+.dashboard-shell{width:min(100%,1120px);max-width:1120px;min-width:0;padding-inline:clamp(0px,1vw,10px);padding-bottom:max(16px,env(safe-area-inset-bottom))}
+.dashboard-header,.dashboard-copy,.dashboard-controls,.quick-actions,.section-heading,.add-course-trigger,.course-grid,.course-dashboard-card,.course-dashboard-card .course-open{min-width:0}
+.dashboard-copy{overflow-wrap:anywhere}.dashboard-copy h1,.dashboard-copy p,.action-card strong,.action-card small,.add-course-trigger strong,.add-course-trigger small,.course-copy h3,.course-copy p,.course-footer span{overflow-wrap:anywhere;word-break:break-word}
+.dashboard-controls{min-width:0}.dashboard-controls .icon-button{flex:0 0 auto}.performance-control{min-width:0}.performance-control span{min-width:0}
+.quick-actions,.action-card{min-width:0}.action-card{overflow:hidden}.action-card>span:nth-child(2),.add-course-trigger>span:nth-child(2){min-width:0}
+.section-heading{min-width:0}.section-heading>div{min-width:0}.section-heading h2{overflow-wrap:anywhere}
+.section-heading .view-all-button{flex:0 0 auto;min-height:44px;padding:8px 11px;border-radius:12px;white-space:nowrap;touch-action:manipulation}
+.note-total{white-space:nowrap}.add-course-trigger{min-width:0}.course-dashboard-card{min-width:0}.course-dashboard-card .course-open{min-width:0;overflow:hidden}.course-top,.course-footer,.course-top>*,.course-footer>*{min-width:0}.course-copy{min-width:0}
+.delete-course{width:44px;height:44px;right:8px;bottom:8px;z-index:3;touch-action:manipulation}
+
+/* Course stack: explicit spacing prevents the Liquid Glass scale effect from
+   visually collapsing the gap between the progress surface and cards. */
+.course-grid{margin-top:30px;row-gap:32px}
+.course-dashboard-card{min-height:188px}
+.course-dashboard-card .course-open{min-height:188px}
+
+@media(max-width:700px){
+ .dashboard-screen{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right))}
+ .dashboard-shell{width:100%;min-height:calc(100dvh - max(12px,env(safe-area-inset-top)) - max(16px,env(safe-area-inset-bottom)));padding-inline:0}
+ .dashboard-header{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;padding:14px;border-radius:22px}
+ .dashboard-copy h1{font-size:clamp(25px,7.5vw,34px);line-height:1.06}.dashboard-copy p{font-size:12px;line-height:1.45}
+ .dashboard-controls{display:grid;grid-template-columns:minmax(0,1fr) repeat(3,44px);align-items:center;gap:7px;width:100%}.dashboard-controls .icon-button{width:44px;height:44px;border-radius:13px}
+ .performance-control{width:100%;min-height:44px;justify-content:flex-start;overflow:hidden}.performance-control span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.performance-control button{min-height:34px}
+ .quick-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0 18px}
+ .action-card{min-height:86px;grid-template-columns:40px minmax(0,1fr) 18px;gap:9px;padding:12px;border-radius:19px}.action-icon{width:40px;height:40px;border-radius:13px}.action-card strong{font-size:13px}.action-card small{font-size:10px;margin-top:3px}.action-arrow{font-size:21px}
+ .section-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;row-gap:4px;margin:0 1px 8px}.section-heading>div{grid-column:1;grid-row:1}.section-heading .view-all-button{grid-column:2;grid-row:1}.section-heading .note-total{grid-column:1/-1;grid-row:2;font-size:10px}
+ .add-course-trigger{grid-template-columns:42px minmax(0,1fr) 18px;gap:10px;padding:11px;min-height:64px;border-radius:18px;margin-bottom:14px}.add-course-symbol{width:40px;height:40px;border-radius:13px}.add-course-trigger strong{font-size:13px}.add-course-trigger small{font-size:10px;line-height:1.35}
+ .course-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:9px;row-gap:30px;margin-top:26px}
+ .course-dashboard-card{height:158px;min-height:158px;align-self:start}
+ .course-dashboard-card .course-open{height:100%;min-height:0;padding:13px}
+ .folder-icon{width:39px;height:39px;border-radius:13px}.note-pill{padding:5px 7px;font-size:9px;gap:4px}.course-copy{margin:10px 0 7px}.course-copy h3{font-size:14px;margin-bottom:4px}.course-copy p{font-size:9.5px;line-height:1.3;margin-top:5px}.course-color{padding:3px 6px;font-size:8px}.course-footer{padding-top:7px;font-size:8.5px;gap:6px;padding-right:34px}.delete-course{width:44px;height:44px;right:6px;bottom:6px}
+}
+
+@media(max-width:480px){
+ .dashboard-header{padding:12px;border-radius:20px}.dashboard-controls{grid-template-columns:minmax(0,1fr) repeat(3,44px);gap:6px}.dashboard-controls .icon-button{width:44px;height:44px;border-radius:12px}
+ .performance-control{font-size:10px;padding:4px}.performance-control button{min-height:34px;padding:6px 7px;font-size:10px}
+ .quick-actions{grid-template-columns:1fr;gap:8px;margin:9px 0 16px}.action-card{min-height:76px;grid-template-columns:40px minmax(0,1fr) 18px;padding:11px;border-radius:17px}.action-icon{width:40px;height:40px;border-radius:12px}.action-card strong{font-size:12.5px}.action-card small{font-size:9.5px;line-height:1.35}
+ .section-heading{margin-bottom:7px}.section-heading h2{font-size:11px;letter-spacing:.16em}.section-heading .view-all-button{min-height:44px;padding:7px 9px;font-size:11px}
+ .add-course-trigger{grid-template-columns:40px minmax(0,1fr) 18px;gap:8px;padding:10px;margin-bottom:14px}.add-course-symbol{width:40px;height:40px;border-radius:12px}.add-course-trigger strong{font-size:12px}.add-course-trigger small{font-size:9px}
+ .course-grid{grid-template-columns:1fr;column-gap:0;row-gap:26px;margin-top:24px}
+ .course-dashboard-card{height:148px;min-height:148px}
+ .course-dashboard-card .course-open{height:100%;min-height:0;padding:12px}
+ .folder-icon{width:38px;height:38px;border-radius:12px}.note-pill{padding:5px 7px;font-size:9px}.course-copy{margin:9px 0 6px}.course-copy h3{font-size:13.5px}.course-copy p{font-size:9.5px;line-height:1.3}.course-footer{font-size:8.5px;padding-right:38px}
+}
+
+@media(max-width:380px){
+ .dashboard-screen{padding-left:6px;padding-right:6px}.dashboard-header{padding:10px;border-radius:18px}.dashboard-copy h1{font-size:23px}.dashboard-copy p{font-size:10.5px}
+ .dashboard-controls{grid-template-columns:minmax(0,1fr) repeat(3,44px);gap:5px}.dashboard-controls .icon-button{width:44px;height:44px;border-radius:11px}.performance-control span{display:none}.performance-control{justify-content:space-between}.performance-control button{padding:5px 6px;font-size:9px}
+ .action-card{min-height:72px;padding:10px}.action-icon{width:38px;height:38px}.section-heading .view-all-button{font-size:10px;padding:7px 8px}.add-course-trigger{grid-template-columns:40px minmax(0,1fr) 18px}
+ .course-grid{row-gap:24px;margin-top:22px}.course-dashboard-card{height:142px;min-height:142px}.course-dashboard-card .course-open{height:100%;min-height:0;padding:11px}.delete-course{width:44px;height:44px;right:5px;bottom:5px}
+}
+
+@media(max-width:330px){
+ .dashboard-screen{padding-left:5px;padding-right:5px}.dashboard-header{padding:9px}.dashboard-controls{grid-template-columns:minmax(0,1fr) repeat(3,44px);gap:4px}.performance-control{font-size:9px}.performance-control button{padding-inline:5px}.action-card{min-height:70px}.add-course-trigger{grid-template-columns:38px minmax(0,1fr) 16px;gap:7px;padding:9px}.add-course-symbol{width:38px;height:38px}
+ .course-grid{row-gap:22px;margin-top:20px}.course-dashboard-card{height:136px;min-height:136px}.course-dashboard-card .course-open{height:100%;min-height:0}.course-copy h3{font-size:13px}.course-copy p{font-size:9px}
+}
+
+@media(prefers-reduced-motion:reduce){.dashboard-screen *{scroll-behavior:auto!important}}
+
+/* Audit hardening: preserve separate touch targets without covering course metadata. */
+.course-dashboard-card .course-open{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.course-dashboard-card .delete-course{top:7px;right:7px;bottom:auto}
+.course-dashboard-card .course-top{padding-right:48px}
+.course-dashboard-card .note-pill{max-width:calc(100% - 48px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+@media(max-width:700px){
+  .course-dashboard-card{overflow:visible}
+  .course-dashboard-card .course-open{overflow:hidden}
+  .course-dashboard-card .course-top{padding-right:44px}
+}
+
+@media(max-width:480px){
+  .course-dashboard-card{height:154px;min-height:154px}
+  .course-dashboard-card .course-open{padding:12px}
+  .course-dashboard-card .delete-course{width:44px;height:44px;top:5px;right:5px}
+  .course-dashboard-card .course-top{padding-right:43px}
+  .course-dashboard-card .note-pill{max-width:calc(100% - 43px)}
+}
+
+@media(max-width:380px){
+  .course-dashboard-card{height:152px;min-height:152px}
+  .course-dashboard-card .course-open{padding:11px}
+}
+
+@media(max-width:330px){
+  .course-dashboard-card{height:150px;min-height:150px}
+  .course-dashboard-card .course-open{padding:10px}
+  .course-copy{margin:8px 0 6px}
+  .course-copy h3{font-size:13px}
+  .course-copy p{font-size:9.2px}
+}
+
+/* Mobile course-card vertical-size increase: larger reading area without overflow. */
+@media(max-width:700px){
+  .course-dashboard-card{height:172px;min-height:172px}
+  .course-dashboard-card .course-open{height:100%;min-height:0}
+}
+
+@media(max-width:480px){
+  /* Matched to the supplied mobile reference screenshot: ~196px card height at a ~463px viewport. */
+  .course-dashboard-card{height:196px;min-height:196px}
+}
+
+@media(max-width:380px){
+  .course-dashboard-card{height:164px;min-height:164px}
+}
+
+@media(max-width:330px){
+  .course-dashboard-card{height:160px;min-height:160px}
+}
+
+/* Balanced mobile course-card separation: keep cards visually grouped after the height increase. */
+@media(max-width:700px){
+  .course-grid{row-gap:18px}
+}
+@media(max-width:480px){
+  .course-grid{row-gap:15px}
+}
+@media(max-width:380px){
+  .course-grid{row-gap:13px}
+}
+@media(max-width:330px){
+  .course-grid{row-gap:11px}
+}
+
+/* Compact Add New Course action: content-width glass button, aligned to the right below the course section heading. */
+.add-course-trigger{
+  width:max-content;
+  max-width:100%;
+  min-height:48px;
+  height:48px;
+  margin-left:auto;
+  margin-right:0;
+  margin-bottom:16px;
+  display:inline-grid;
+  grid-template-columns:36px auto 16px;
+  align-items:center;
+  gap:8px;
+  padding:6px 11px 6px 8px;
+  border-radius:15px;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.add-course-trigger .add-course-symbol{width:34px;height:34px;border-radius:11px}
+.add-course-trigger strong{font-size:12px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.add-course-trigger small{display:none}
+.add-course-trigger>span:last-child{font-size:18px;line-height:1}
+
+@media(max-width:700px){
+  .add-course-trigger{
+    width:max-content;
+    max-width:100%;
+    min-height:48px;
+    height:48px;
+    margin-left:auto;
+    margin-right:0;
+    margin-bottom:12px;
+    grid-template-columns:36px auto 16px;
+    gap:7px;
+    padding:6px 10px 6px 7px;
+    border-radius:15px;
+  }
+  .add-course-trigger .add-course-symbol{width:34px;height:34px;border-radius:11px}
+  .add-course-trigger strong{font-size:12px}
+}
+
+@media(max-width:380px){
+  .add-course-trigger{min-height:46px;height:46px;grid-template-columns:32px auto 15px;gap:6px;padding:6px 9px 6px 6px}
+  .add-course-trigger .add-course-symbol{width:32px;height:32px;border-radius:10px}
+  .add-course-trigger strong{font-size:11.5px}
+}
+
+@media(max-width:330px){
+  .add-course-trigger{min-height:44px;height:44px;grid-template-columns:31px auto 14px;gap:6px;padding:5px 8px 5px 6px;border-radius:14px}
+  .add-course-trigger .add-course-symbol{width:31px;height:31px;border-radius:9px}
+  .add-course-trigger strong{font-size:11px}
+}

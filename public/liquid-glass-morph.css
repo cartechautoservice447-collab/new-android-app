@@ -1,0 +1,208 @@
+/*
+ * Liquid Glass navigation transitions.
+ * Reuses the existing glass surfaces; this file only controls temporary
+ * View Transition snapshots and the post-transition interface entrance.
+ */
+@supports (view-transition-name: none){
+  /* True shared-element morph: course card -> course workspace hero. */
+  .course-workspace-screen .course-workspace-hero{
+    view-transition-name: liquid-glass-course;
+    view-transition-class: liquid-glass-course-surface;
+  }
+
+  ::view-transition-group(liquid-glass-course){
+    animation-duration:520ms;
+    animation-timing-function:cubic-bezier(.2,.78,.2,1);
+    overflow:hidden;
+  }
+
+  ::view-transition-image-pair(liquid-glass-course){
+    isolation:isolate;
+    overflow:hidden;
+    border-radius:var(--glass-theme-radius,24px);
+  }
+
+  ::view-transition-old(liquid-glass-course),
+  ::view-transition-new(liquid-glass-course){
+    animation-timing-function:cubic-bezier(.2,.78,.2,1);
+    backface-visibility:hidden;
+  }
+
+  ::view-transition-old(liquid-glass-course){animation-name:liquid-glass-course-out}
+  ::view-transition-new(liquid-glass-course){animation-name:liquid-glass-course-in}
+
+  @keyframes liquid-glass-course-out{
+    from{opacity:1;transform:scale(1)}
+    to{opacity:.18;transform:scale(.96)}
+  }
+
+  @keyframes liquid-glass-course-in{
+    from{opacity:.18;transform:scale(1.04)}
+    to{opacity:1;transform:scale(1)}
+  }
+
+  /* Build 2 page transition, limited to the approved Dashboard/Course scope. */
+  html[data-liquid-transition-active] ::view-transition-old(root),
+  html[data-liquid-transition-active] ::view-transition-new(root){
+    animation-duration:420ms;
+    animation-timing-function:cubic-bezier(.22,.76,.2,1);
+    backface-visibility:hidden;
+  }
+
+  html[data-liquid-transition-active] ::view-transition-old(root){
+    animation-name:liquid-glass-page-out;
+  }
+
+  html[data-liquid-transition-active] ::view-transition-new(root){
+    animation-name:liquid-glass-page-in;
+  }
+
+  html[data-liquid-transition-active][data-liquid-transition="back"] ::view-transition-old(root){
+    animation-name:liquid-glass-page-back-out;
+  }
+
+  html[data-liquid-transition-active][data-liquid-transition="back"] ::view-transition-new(root){
+    animation-name:liquid-glass-page-back-in;
+  }
+
+  /* Course shared-element morph owns the transition; suppress root motion. */
+  html[data-liquid-course-morph] ::view-transition-old(root),
+  html[data-liquid-course-morph] ::view-transition-new(root){
+    animation:none;
+  }
+
+  @keyframes liquid-glass-page-out{
+    from{opacity:1;transform:translate3d(0,0,0) scale(1)}
+    to{opacity:.82;transform:translate3d(0,-8px,0) scale(.992)}
+  }
+
+  @keyframes liquid-glass-page-in{
+    from{opacity:.78;transform:translate3d(0,10px,0) scale(.992)}
+    to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+  }
+
+  @keyframes liquid-glass-page-back-out{
+    from{opacity:1;transform:translate3d(0,0,0) scale(1)}
+    to{opacity:.82;transform:translate3d(0,8px,0) scale(.992)}
+  }
+
+  @keyframes liquid-glass-page-back-in{
+    from{opacity:.78;transform:translate3d(0,-10px,0) scale(.992)}
+    to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+  }
+
+  /*
+   * Critical handoff fix:
+   * keep destination content invisible behind the Build 2 snapshot. The
+   * destination cannot briefly render in the old/static Build 2 state before
+   * the sequential entrance is applied.
+   *
+   * Course workspace hero remains visible because it is the true shared
+   * element. Bottom five-icon navigation is excluded entirely.
+   */
+  html.liquid-stagger-pending .dashboard-screen .dashboard-header,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-copy,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-controls,
+  html.liquid-stagger-pending .dashboard-screen .quick-actions,
+  html.liquid-stagger-pending .dashboard-screen .section-heading,
+  html.liquid-stagger-pending .dashboard-screen .add-course-trigger,
+  html.liquid-stagger-pending .dashboard-screen .course-grid,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-pomodoro-action,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-recent,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-recent-item,
+  html.liquid-stagger-pending .dashboard-screen .learning-suite,
+  html.liquid-stagger-pending .dashboard-screen .learning-suite-card,
+  html.liquid-stagger-pending .dashboard-screen .study-planner-card,
+  html.liquid-stagger-pending .dashboard-screen .spaced-repetition-card,
+  html.liquid-stagger-pending .course-folder-screen .course-folder-header,
+  html.liquid-stagger-pending .course-folder-screen .course-search,
+  html.liquid-stagger-pending .course-folder-screen .course-folder-card,
+  html.liquid-stagger-pending .course-folder-screen .course-subview-header,
+  html.liquid-stagger-pending .course-folder-screen .course-section-heading,
+  html.liquid-stagger-pending .course-folder-screen .course-subview-list > *,
+  html.liquid-stagger-pending .course-workspace-screen .course-workspace-header,
+  html.liquid-stagger-pending .course-workspace-screen .course-workspace-hero ~ .course-workspace-progress,
+  html.liquid-stagger-pending .course-workspace-screen .course-workspace-section-heading,
+  html.liquid-stagger-pending .course-workspace-screen .course-tool-folder{
+    visibility:hidden!important;
+    opacity:0!important;
+  }
+
+  /* Build 2 post-transition entrance. */
+  .liquid-stagger-enter{
+    animation-name:liquid-glass-stagger-in;
+    animation-duration:460ms;
+    animation-timing-function:cubic-bezier(.2,.78,.2,1);
+    animation-delay:calc(var(--liquid-stagger-index,0) * 42ms);
+    animation-fill-mode:both;
+    will-change:transform,opacity;
+  }
+
+  @keyframes liquid-glass-stagger-in{
+    from{
+      opacity:0;
+      transform:translate3d(0,14px,0) scale(.985);
+    }
+    55%{
+      opacity:1;
+      transform:translate3d(0,-2px,0) scale(1.002);
+    }
+    to{
+      opacity:1;
+      transform:translate3d(0,0,0) scale(1);
+    }
+  }
+
+  html.liquid-stagger-reduced-motion .liquid-stagger-enter{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+
+  html[data-liquid-transition-active] ::view-transition-group(root){overflow:hidden}
+}
+
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-group(liquid-glass-course),
+  ::view-transition-old(liquid-glass-course),
+  ::view-transition-new(liquid-glass-course),
+  html[data-liquid-transition-active] ::view-transition-group(root),
+  html[data-liquid-transition-active] ::view-transition-old(root),
+  html[data-liquid-transition-active] ::view-transition-new(root){
+    animation:none!important;
+  }
+
+  html.liquid-stagger-pending .dashboard-screen .dashboard-header,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-copy,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-controls,
+  html.liquid-stagger-pending .dashboard-screen .quick-actions,
+  html.liquid-stagger-pending .dashboard-screen .section-heading,
+  html.liquid-stagger-pending .dashboard-screen .add-course-trigger,
+  html.liquid-stagger-pending .dashboard-screen .course-grid,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-pomodoro-action,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-recent,
+  html.liquid-stagger-pending .dashboard-screen .dashboard-recent-item,
+  html.liquid-stagger-pending .dashboard-screen .learning-suite,
+  html.liquid-stagger-pending .dashboard-screen .learning-suite-card,
+  html.liquid-stagger-pending .dashboard-screen .study-planner-card,
+  html.liquid-stagger-pending .dashboard-screen .spaced-repetition-card,
+  html.liquid-stagger-pending .course-folder-screen .course-folder-header,
+  html.liquid-stagger-pending .course-folder-screen .course-search,
+  html.liquid-stagger-pending .course-folder-screen .course-folder-card,
+  html.liquid-stagger-pending .course-folder-screen .course-subview-header,
+  html.liquid-stagger-pending .course-folder-screen .course-section-heading,
+  html.liquid-stagger-pending .course-folder-screen .course-subview-list > *,
+  html.liquid-stagger-pending .course-workspace-screen .course-workspace-header,
+  html.liquid-stagger-pending .course-workspace-screen .course-workspace-hero ~ .course-workspace-progress,
+  html.liquid-stagger-pending .course-workspace-screen .course-workspace-section-heading,
+  html.liquid-stagger-pending .course-workspace-screen .course-tool-folder{
+    visibility:hidden!important;
+    opacity:0!important;
+  }
+
+  .liquid-stagger-enter{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+}

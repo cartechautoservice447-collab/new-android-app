@@ -1,0 +1,82 @@
+/* Premium vertical rhythm for the Learning Suite.
+   Keeps the existing Liquid Glass material and only increases separation/alignment. */
+.learning-suite-modal .learning-suite-body{
+  display:grid;
+  align-content:start;
+  row-gap:18px;
+  padding-bottom:18px;
+}
+
+.learning-suite-modal .learning-suite-body > *{
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+
+.learning-suite-modal .learning-stat-grid,
+.learning-suite-modal .planner-summary{
+  gap:12px;
+}
+
+.learning-suite-modal .learning-section-card,
+.learning-suite-modal .learning-rating-card{
+  margin-top:0 !important;
+}
+
+.learning-suite-modal .learning-queue,
+.learning-suite-modal .planner-list{
+  gap:12px;
+  margin-top:14px;
+}
+
+.learning-suite-modal .learning-primary-button{
+  margin-top:0 !important;
+}
+
+.learning-suite-modal .learning-footnote{
+  margin-top:0 !important;
+}
+
+.learning-suite-modal .learning-progress{
+  margin-bottom:0 !important;
+}
+
+.learning-suite-modal .learning-source,
+.learning-suite-modal .learning-reveal{
+  margin-top:0 !important;
+}
+
+@media(max-width:600px){
+  .learning-suite-modal .learning-suite-body{
+    row-gap:15px;
+    padding-bottom:16px;
+  }
+
+  .learning-suite-modal .learning-stat-grid,
+  .learning-suite-modal .planner-summary{
+    gap:10px;
+  }
+
+  .learning-suite-modal .learning-queue,
+  .learning-suite-modal .planner-list{
+    gap:11px;
+    margin-top:13px;
+  }
+}
+
+@media(max-width:430px){
+  .learning-suite-modal .learning-suite-body{
+    row-gap:14px;
+    padding-bottom:15px;
+  }
+
+  .learning-suite-modal .learning-stat-grid,
+  .learning-suite-modal .planner-summary{
+    gap:9px;
+  }
+
+  .learning-suite-modal .learning-queue,
+  .learning-suite-modal .planner-list{
+    gap:10px;
+    margin-top:12px;
+  }
+}

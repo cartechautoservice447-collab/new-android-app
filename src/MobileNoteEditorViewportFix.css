@@ -1,0 +1,235 @@
+/* Final mobile note-editor viewport contract.
+   The editor is a full-screen flex column; only the Edit/Preview canvas scrolls. */
+.collection-workspace-screen:has(> .mobile-note-editor-spring-shell){
+  box-sizing:border-box;
+  width:100%;
+  height:100dvh;
+  min-height:0!important;
+  max-height:100dvh;
+  display:flex!important;
+  flex-direction:column;
+  overflow:hidden!important;
+  min-width:0;
+}
+.collection-workspace-screen > .mobile-note-editor-spring-shell{
+  box-sizing:border-box;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  flex:1 1 0!important;
+  display:flex!important;
+  overflow:hidden!important;
+}
+.collection-workspace-screen > .mobile-note-editor-spring-shell > .mobile-note-editor{
+  box-sizing:border-box;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  flex:1 1 0!important;
+  overflow:hidden!important;
+}
+
+@media(max-width:600px){
+  .collection-workspace-screen > .mobile-note-editor-spring-shell > .mobile-note-editor{
+    padding-top:max(4px,env(safe-area-inset-top))!important;
+    padding-right:9px!important;
+    padding-bottom:max(4px,env(safe-area-inset-bottom))!important;
+    padding-left:9px!important;
+    gap:6px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-editor-topbar{
+    flex:0 0 48px!important;
+    min-height:48px!important;
+    height:48px!important;
+    min-width:0!important;
+    width:100%!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-format-toolbar{
+    flex:0 0 46px!important;
+    min-height:46px!important;
+    max-height:46px!important;
+    height:46px!important;
+    width:100%!important;
+    min-width:0!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    flex-wrap:nowrap!important;
+    white-space:nowrap!important;
+    scrollbar-width:none;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-format-toolbar::-webkit-scrollbar{display:none}
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-format-toolbar button{
+    flex:0 0 40px!important;
+    width:40px!important;
+    min-width:40px!important;
+    height:40px!important;
+    min-height:40px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-controls{
+    flex:0 0 48px!important;
+    min-height:48px!important;
+    height:48px!important;
+    width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:72px minmax(152px,1fr) 72px!important;
+    align-items:center!important;
+    gap:4px!important;
+    overflow:visible!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-history{
+    width:72px!important;
+    min-width:72px!important;
+    display:flex!important;
+    flex:0 0 72px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-history button{
+    width:36px!important;
+    min-width:36px!important;
+    height:42px!important;
+    min-height:42px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-mode-switch{
+    width:100%!important;
+    min-width:152px!important;
+    height:42px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    flex:none!important;
+    overflow:visible!important;
+    border-radius:14px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-mode-switch button,
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-mode-switch button:not(.active){
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex:none!important;
+    min-width:0!important;
+    width:100%!important;
+    height:40px!important;
+    min-height:40px!important;
+    padding:0 6px!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    font-size:.68rem!important;
+    line-height:1!important;
+    opacity:1!important;
+    visibility:visible!important;
+    color:#eef7ff!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-mode-switch button:not(.active){
+    background:rgba(255,255,255,.035)!important;
+    border:1px solid rgba(255,255,255,.10)!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-mode-switch button.active{
+    background:rgba(255,255,255,.20)!important;
+    border:1px solid rgba(255,255,255,.24)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14)!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-readability{
+    width:72px!important;
+    min-width:72px!important;
+    max-width:72px!important;
+    height:42px!important;
+    min-height:42px!important;
+    overflow:hidden!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-workarea{
+    flex:1 1 0!important;
+    width:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    overflow:hidden!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-editor-pane,
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-preview-pane{
+    width:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    height:100%!important;
+    max-height:100%!important;
+    overflow:auto!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-preview-content{
+    width:100%!important;
+    min-width:0!important;
+    min-height:100%!important;
+    height:auto!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    padding-bottom:22px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-preview-content article{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:14px 12px 26px!important;
+    overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-editor-pane>textarea{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    height:auto!important;
+    min-height:100%!important;
+    max-height:none!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    white-space:pre-wrap!important;
+    overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .preview-code,
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .preview-table-wrap,
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .preview-callout{
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .preview-code pre{
+    max-width:100%!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+  }
+}
+
+@media(max-width:380px){
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-controls{
+    grid-template-columns:64px minmax(142px,1fr) 64px!important;
+    gap:3px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-history{
+    width:64px!important;min-width:64px!important;flex-basis:64px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-readability{
+    width:64px!important;min-width:64px!important;max-width:64px!important;
+  }
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-mode-switch{min-width:142px!important}
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-mode-switch button{font-size:.63rem!important;padding-inline:3px!important}
+}
+
+@media(orientation:landscape) and (max-width:700px){
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-editor-topbar{flex-basis:44px!important;min-height:44px!important;height:44px!important}
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-format-toolbar{flex-basis:42px!important;min-height:42px!important;height:42px!important;max-height:42px!important}
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-format-toolbar button{width:38px!important;min-width:38px!important;height:38px!important;min-height:38px!important}
+  .collection-workspace-screen > .mobile-note-editor-spring-shell .generated-controls{flex-basis:44px!important;min-height:44px!important;height:44px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .collection-workspace-screen > .mobile-note-editor-spring-shell,
+  .collection-workspace-screen > .mobile-note-editor-spring-shell *{scroll-behavior:auto!important}
+}

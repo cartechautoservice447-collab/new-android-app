@@ -1,0 +1,30 @@
+{
+  "name": "mobile-liquid-glass",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cap:sync": "npm run build && cap sync android",
+    "cap:android": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/app": "^8.0.0",
+    "@supabase/supabase-js": "^2.112.3",
+    "prismjs": "1.30.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "lucide-react": "^0.468.0",
+    "motion": "^13.1.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "^5.9.2",
+    "vite": "^8.2.0"
+  }
+}

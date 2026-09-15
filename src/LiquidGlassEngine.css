@@ -1,0 +1,29 @@
+/* Shared Liquid Glass stage: the same blue/violet atmosphere and three drifting soft orbs used by the reference engine. */
+.app-root-layer{position:relative;min-height:100dvh;isolation:isolate;overflow:hidden;background:#07111f}
+.app-root-layer> :not(.liquid-environment):not(.liquid-refraction-defs){position:relative;z-index:1}
+.liquid-environment{position:fixed;inset:0;z-index:0;overflow:hidden;background:radial-gradient(120% 90% at 10% 0%,oklch(.62 .18 250) 0%,transparent 60%),radial-gradient(100% 80% at 100% 10%,oklch(.58 .17 285) 0%,transparent 55%),linear-gradient(170deg,oklch(.5 .17 258),oklch(.36 .15 268));filter:brightness(var(--background-brightness,1));transition:background 600ms ease,filter 250ms ease}
+.liquid-environment-orb{position:absolute;border-radius:9999px;filter:blur(60px);opacity:.75;pointer-events:none;animation:liquid-environment-drift 18s ease-in-out infinite}
+.liquid-environment-orb-a{width:26rem;height:26rem;top:-6rem;left:-5rem;background:oklch(.75 .19 250)}
+.liquid-environment-orb-b{width:22rem;height:22rem;bottom:-7rem;right:-4rem;background:oklch(.78 .2 330);animation-delay:-6s}
+.liquid-environment-orb-c{width:18rem;height:18rem;top:45%;left:55%;background:oklch(.85 .17 190);animation-delay:-12s}
+@keyframes liquid-environment-drift{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(4rem,-3rem,0) scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.liquid-environment-orb{animation:none}}
+.dark .liquid-environment{background:radial-gradient(120% 90% at 10% 0%,oklch(.32 .11 265) 0%,transparent 60%),radial-gradient(100% 80% at 100% 10%,oklch(.27 .12 320) 0%,transparent 55%),linear-gradient(170deg,oklch(.17 .04 265),oklch(.11 .03 275))}
+.dark .liquid-environment-orb{opacity:.45}
+.dark .liquid-environment-orb-a{background:oklch(.55 .2 265)}
+.dark .liquid-environment-orb-b{background:oklch(.5 .2 330)}
+.dark .liquid-environment-orb-c{background:oklch(.55 .16 195)}
+html.pure-black .liquid-environment,html[data-full-dark-background="on"] .liquid-environment{background:#050507}
+html.pure-black .liquid-environment-orb,html[data-full-dark-background="on"] .liquid-environment-orb{opacity:0}
+html[data-background-theme="off"] .liquid-environment{background:var(--background,#eef4fb)}
+html[data-background-theme="off"] .liquid-environment-orb{opacity:0}
+.liquid-refraction-defs{position:fixed;width:0;height:0;overflow:hidden;pointer-events:none}
+.screen,.dashboard-screen,.course-folder-screen,.course-workspace-screen{background:transparent!important}
+/* Reference interaction physics for existing Mobile glass controls. */
+.course-dashboard-card,.action-card,.course-tool-folder,.course-folder-card,.collection-note-card,.add-course-trigger{
+  --liquid-press-duration:var(--liquid-motion-duration,350ms);
+  transition:transform var(--liquid-press-duration) cubic-bezier(.2,.8,.2,1),filter var(--liquid-motion-duration,350ms) ease,box-shadow var(--liquid-motion-duration,350ms) ease}
+.course-dashboard-card:hover,.action-card:hover,.course-tool-folder:hover,.course-folder-card:hover,.collection-note-card:hover,.add-course-trigger:hover{transform:translateY(-4px) scale(1.015);filter:brightness(1.04)}
+.course-dashboard-card:active,.action-card:active,.course-tool-folder:active,.course-folder-card:active,.collection-note-card:active,.add-course-trigger:active{transform:scale(.96)}
+.course-dashboard-card[data-liquid-press-locked="true"],.action-card[data-liquid-press-locked="true"],.course-tool-folder[data-liquid-press-locked="true"],.course-folder-card[data-liquid-press-locked="true"],.collection-note-card[data-liquid-press-locked="true"],.add-course-trigger[data-liquid-press-locked="true"]{--liquid-press-duration:0ms}
+@media(prefers-reduced-motion:reduce){.course-dashboard-card,.action-card,.course-tool-folder,.course-folder-card,.collection-note-card,.add-course-trigger{transition:none}.course-dashboard-card:hover,.action-card:hover,.course-tool-folder:hover,.course-folder-card:hover,.collection-note-card:hover,.add-course-trigger:hover,.course-dashboard-card:active,.action-card:active,.course-tool-folder:active,.course-folder-card:active,.collection-note-card:active,.add-course-trigger:active{transform:none}}

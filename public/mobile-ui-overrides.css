@@ -1,0 +1,332 @@
+/* Mobile UI sizing overrides */
+.add-course-trigger {
+  min-height: 62px !important;
+  padding: 10px 12px !important;
+  border-radius: 17px !important;
+  gap: 9px !important;
+}
+
+.add-course-trigger .add-course-symbol {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  border-radius: 11px !important;
+}
+
+.add-course-trigger .add-course-symbol svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.add-course-trigger strong {
+  font-size: 13px !important;
+}
+
+.add-course-trigger small {
+  font-size: 10px !important;
+  margin-top: 3px !important;
+}
+
+.add-course-trigger .action-arrow {
+  font-size: 20px !important;
+}
+
+/* Collection creation: name field + icon-only add control */
+.collection-create-form-inline {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.collection-create-form-inline input {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.collection-add-button {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(175,225,255,.26) !important;
+  border-radius: 11px !important;
+  background: rgba(120,210,245,.14) !important;
+  color: #e7f8ff !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.collection-add-button:active {
+  background: rgba(150,225,255,.24) !important;
+  transform: scale(.97);
+}
+
+/* Collection notes: dedicated New Notes button, no inline input/+ control */
+.collection-new-note-button {
+  width: 100% !important;
+  min-height: 42px !important;
+  flex: none !important;
+  margin: 0 0 9px !important;
+  padding: 0 13px !important;
+  border: 1px solid rgba(175,225,255,.24) !important;
+  border-radius: 11px !important;
+  background: linear-gradient(110deg,rgba(255,255,255,.09),rgba(75,185,235,.14)) !important;
+  color: #eaf7ff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  font-size: .7rem !important;
+  font-weight: 700 !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.14), 0 8px 20px rgba(0,0,0,.08) !important;
+}
+
+.collection-new-note-button:active {
+  background: rgba(150,225,255,.2) !important;
+  transform: scale(.985);
+}
+
+.collection-new-note-button svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Premium Notes refinement: clear lens, lower saturation, tighter cards, cleaner hierarchy. */
+@media (max-width: 600px){
+  .collection-workspace-screen .generated-editor-glass.collection-workspace{
+    background:
+      radial-gradient(circle at 78% 0%, rgba(92,184,255,.11), transparent 40%),
+      radial-gradient(circle at 12% 2%, rgba(170,120,255,.10), transparent 36%),
+      linear-gradient(135deg, rgba(15,24,68,.76), rgba(23,70,118,.69) 52%, rgba(23,94,104,.62));
+    border: 1px solid rgba(214,242,255,.24);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.34),
+      inset 0 -36px 80px rgba(8,15,40,.16),
+      0 20px 55px rgba(8,18,45,.18);
+    backdrop-filter: blur(34px) saturate(150%);
+    -webkit-backdrop-filter: blur(34px) saturate(150%);
+  }
+
+  .collection-workspace-screen .notes-only-panel{
+    margin-top: 2px;
+    padding: 10px 9px 9px;
+    border: 1px solid rgba(224,247,255,.19);
+    border-radius: 18px;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,.075), rgba(112,186,235,.075) 55%, rgba(185,120,235,.055));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.22),
+      inset 0 -20px 42px rgba(12,25,58,.12),
+      0 14px 36px rgba(0,0,0,.11);
+    backdrop-filter: blur(28px) saturate(145%);
+    -webkit-backdrop-filter: blur(28px) saturate(145%);
+  }
+
+  .collection-workspace-screen .collection-notes-panel{
+    overflow: hidden;
+  }
+
+  .collection-workspace-screen .collection-note-list{
+    gap: 8px;
+    padding: 2px 1px 66px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .collection-workspace-screen .collection-note-list::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .collection-workspace-screen .collection-note-card{
+    min-height: 82px !important;
+    height: 82px !important;
+    padding: 10px 11px !important;
+    border: 1px solid rgba(224,245,255,.15) !important;
+    border-radius: 17px !important;
+    background:
+      linear-gradient(112deg, rgba(255,255,255,.075), rgba(105,179,231,.072) 58%, rgba(170,119,224,.055)) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.24),
+      inset 0 -10px 24px rgba(12,26,56,.08),
+      0 8px 22px rgba(4,15,34,.10) !important;
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+  }
+
+  .collection-workspace-screen .collection-note-card::before{
+    opacity: .26 !important;
+    filter: blur(.2px) !important;
+  }
+
+  .collection-workspace-screen .collection-note-card > span{
+    flex: 0 0 31px;
+    width: 31px;
+    color: rgba(213,238,255,.50) !important;
+    font-size: .67rem !important;
+    font-weight: 600 !important;
+    letter-spacing: .04em;
+  }
+
+  .collection-workspace-screen .collection-note-card > div{
+    min-width: 0;
+    padding-right: 4px;
+  }
+
+  .collection-workspace-screen .collection-note-card strong{
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgba(246,251,255,.97) !important;
+    font-size: .93rem !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+    letter-spacing: -.012em;
+  }
+
+  .collection-workspace-screen .collection-note-card small{
+    display: block;
+    margin-top: 5px !important;
+    color: rgba(210,232,249,.58) !important;
+    font-size: .67rem !important;
+    line-height: 1.15 !important;
+    font-weight: 500 !important;
+  }
+
+  .collection-workspace-screen .collection-note-card > button{
+    flex: 0 0 34px;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(218,243,255,.12) !important;
+    background: rgba(255,255,255,.035) !important;
+    color: rgba(220,240,255,.54) !important;
+    display: grid;
+    place-items: center;
+  }
+
+  .collection-workspace-screen .collection-note-card > button:active{
+    transform: scale(.95);
+    background: rgba(255,255,255,.09) !important;
+  }
+
+  .collection-workspace-screen .collection-mobile-header{
+    min-height: 48px;
+    padding: 0 3px 4px;
+  }
+
+  .collection-workspace-screen .collection-mobile-header .back-button{
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border-color: rgba(224,246,255,.17);
+    background: rgba(255,255,255,.065);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.16);
+  }
+
+  .collection-workspace-screen .collection-mobile-title h1{
+    font-size: 1.18rem;
+    line-height: 1.1;
+    font-weight: 720;
+    letter-spacing: -.022em;
+  }
+
+  .collection-workspace-screen .collection-new-note-button{
+    min-height: 48px !important;
+    margin-top: 12px !important;
+    margin-bottom: 9px !important;
+    border: 1px solid rgba(224,246,255,.16) !important;
+    border-radius: 14px !important;
+    background: linear-gradient(110deg, rgba(255,255,255,.07), rgba(118,186,236,.085)) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.22),
+      0 0 0 1px rgba(138,214,255,.025),
+      0 0 18px rgba(80,188,255,.18),
+      0 8px 22px rgba(6,18,40,.10) !important;
+    font-size: .78rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -.005em;
+    animation: collectionNewNoteGlow 2.8s ease-in-out infinite;
+  }
+
+  .collection-workspace-screen .collection-new-note-button svg{
+    width: 18px !important;
+    height: 18px !important;
+    filter: drop-shadow(0 0 7px rgba(170,235,255,.42));
+  }
+
+  .collection-workspace-screen .collection-new-note-button:active{
+    animation:none;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.25),
+      0 0 22px rgba(100,204,255,.34),
+      0 5px 16px rgba(6,18,40,.10) !important;
+  }
+
+  /* Non-blocking toast: it never becomes part of the note-list layout. */
+  .collection-workspace-screen > .collection-workspace > .message{
+    position: fixed !important;
+    left: 50% !important;
+    bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+    transform: translateX(-50%) !important;
+    z-index: 240 !important;
+    width: min(360px, calc(100vw - 28px)) !important;
+    margin: 0 !important;
+    padding: 13px 16px !important;
+    border: 1px solid rgba(224,246,255,.16) !important;
+    border-radius: 16px !important;
+    background: rgba(20,34,68,.62) !important;
+    color: rgba(244,250,255,.93) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.16),
+      0 14px 36px rgba(0,0,0,.18) !important;
+    backdrop-filter: blur(24px) saturate(145%);
+    -webkit-backdrop-filter: blur(24px) saturate(145%);
+    font-size: .78rem !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    pointer-events: none !important;
+  }
+}
+
+@keyframes collectionNewNoteGlow{
+  0%,100%{
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.22),
+      0 0 0 1px rgba(138,214,255,.02),
+      0 0 15px rgba(80,188,255,.14),
+      0 8px 22px rgba(6,18,40,.10);
+  }
+  50%{
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.26),
+      0 0 0 1px rgba(138,214,255,.045),
+      0 0 26px rgba(80,188,255,.28),
+      0 10px 26px rgba(6,18,40,.12);
+  }
+}
+
+@media (max-width: 380px){
+  .collection-workspace-screen .collection-note-card{
+    min-height: 76px !important;
+    height: 76px !important;
+    padding-inline: 9px !important;
+    border-radius: 15px !important;
+  }
+  .collection-workspace-screen .collection-note-card > span{flex-basis:27px;width:27px}
+  .collection-workspace-screen .collection-note-card strong{font-size:.87rem !important}
+  .collection-workspace-screen .collection-note-card small{font-size:.62rem !important}
+  .collection-workspace-screen .collection-note-card > button{width:32px !important;height:32px !important;min-width:32px !important}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .collection-workspace-screen .collection-note-card,
+  .collection-workspace-screen .collection-new-note-button{
+    transition:none !important;
+    animation:none !important;
+  }
+}

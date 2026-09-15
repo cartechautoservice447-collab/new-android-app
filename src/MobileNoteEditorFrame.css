@@ -1,0 +1,38 @@
+.mobile-note-editor .generated-workarea{position:relative;flex:1 1 0;min-height:0;display:block;overflow:hidden;border:1px solid rgba(32,41,55,.96);border-radius:18px;background:#0d1117;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 12px 30px rgba(0,0,0,.22);isolation:isolate}
+.mobile-note-editor .generated-editor-pane,.mobile-note-editor .generated-preview-pane{width:100%;height:100%;min-height:0;box-sizing:border-box;border:0!important;border-radius:inherit;background:#0d1117!important;box-shadow:none!important;overflow:auto}
+.mobile-note-editor .generated-editor-pane{padding:14px 10px 18px}
+.mobile-note-editor .generated-editor-pane>textarea{display:block;width:100%;height:100%;min-height:100%;box-sizing:border-box;padding:0 2px;border:0;outline:0;background:transparent;color:#c9d1d9;font-size:.94rem;line-height:1.82;letter-spacing:.005em}
+.mobile-note-editor .generated-preview-pane{padding:0}
+.mobile-note-editor .generated-preview-content{min-height:100%;height:100%;background:#0d1117}
+.mobile-note-editor .generated-preview-mini{background:#161b22;border-bottom:1px solid #21262d;color:#8b949e}
+.mobile-note-editor .generated-preview-content article{max-width:none;padding:20px 14px 38px;color:#c9d1d9;word-break:normal;overflow-wrap:anywhere}
+.mobile-note-editor .generated-preview-content p{margin:0 0 16px;color:#c9d1d9;font-size:1rem;line-height:1.82}
+.mobile-note-editor .generated-preview-content h1{margin:0 0 18px;padding-bottom:10px;color:#f0f6fc;font-size:1.55rem;line-height:1.25}
+.mobile-note-editor .generated-preview-content h2{margin:24px 0 11px;color:#f0f6fc;font-size:1.28rem;line-height:1.3}
+.mobile-note-editor .generated-preview-content h3{margin:20px 0 9px;color:#f0f6fc;font-size:1.08rem;line-height:1.35}
+.mobile-note-editor .generated-preview-content h4{margin:18px 0 8px;color:#f0f6fc;font-size:1rem;line-height:1.4}
+.mobile-note-editor .generated-preview-content ul,.mobile-note-editor .generated-preview-content ol{margin:0 0 17px;padding-left:23px}
+.mobile-note-editor .generated-preview-content li{margin:6px 0;color:#c9d1d9;font-size:1rem;line-height:1.78}
+.mobile-note-editor .generated-preview-content blockquote{margin:18px 0;padding:11px 13px;border-left:2px solid #8b949e;border-radius:0 10px 10px 0;background:#161b22;color:#c9d1d9}
+.mobile-note-editor .generated-preview-content hr{margin:24px 0;border-color:#30363d}
+.mobile-note-editor .preview-code{margin:18px 0;overflow:hidden;border:1px solid #30363d;border-radius:12px;background:#0d1117;box-shadow:none}
+.mobile-note-editor .preview-code-head{min-height:30px;padding:0 9px;background:#161b22;border-bottom:1px solid #21262d;color:#8b949e}
+.mobile-note-editor .preview-code-head button{color:#b0bac5}
+.mobile-note-editor .preview-code pre{margin:0;padding:13px;background:#0d1117;color:#c9d1d9;font:400 .78rem/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto}
+.mobile-note-editor .preview-code .tok-keyword{color:#ff7b72;font-weight:400}
+.mobile-note-editor .preview-code .tok-string{color:#a5d6ff;font-weight:400}
+.mobile-note-editor .preview-code .tok-number{color:#79c0ff;font-weight:400}
+.mobile-note-editor .preview-code .tok-comment{color:#8b949e;opacity:1;font-style:italic}
+.mobile-note-editor .preview-table-wrap{margin:18px 0;border-color:#30363d;background:#0d1117}
+.mobile-note-editor .preview-table-wrap th{background:#161b22;color:#f0f6fc}
+.mobile-note-editor .preview-table-wrap th,.mobile-note-editor .preview-table-wrap td{padding:9px 10px;border-color:#21262d}
+.mobile-note-editor .preview-callout{margin:18px 0;padding:11px 12px;border-color:#30363d;background:#161b22}
+.mobile-note-editor .preview-callout span{font-size:.95rem;line-height:1.72;color:#c9d1d9}
+.mobile-note-editor .task-list li{font-size:1rem;line-height:1.78}
+
+/* The bottom save/status panel is intentionally removed so the dark editor/preview surface reaches the outer glass curve. */
+.mobile-note-editor .generated-editor-footer{display:none!important}
+.mobile-note-editor .generated-workarea{margin-bottom:0;border-radius:18px 18px 20px 20px}
+.mobile-note-editor{padding-bottom:0!important}
+
+@media (max-width:520px){.mobile-note-editor{gap:7px}.mobile-note-editor .generated-workarea{border-radius:17px 17px 19px 19px}.mobile-note-editor .generated-editor-pane{padding:13px 9px 18px}.mobile-note-editor .generated-editor-pane>textarea{font-size:.93rem;line-height:1.84}.mobile-note-editor .generated-preview-content article{padding:18px 12px 40px}.mobile-note-editor .generated-preview-content p,.mobile-note-editor .generated-preview-content li{font-size:1rem;line-height:1.82}.mobile-note-editor .preview-code pre{font-size:.75rem;line-height:1.65;padding:12px}}

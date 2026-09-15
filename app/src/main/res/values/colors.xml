@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_dark">#07111F</color>
+    <color name="surface_dark">#0D1B2A</color>
+    <color name="accent_sky">#72D7FF</color>
+    <color name="accent_violet">#BD86FF</color>
+    <color name="accent_amber">#FFD166</color>
+    <color name="accent_emerald">#67E8B1</color>
+    <color name="accent_rose">#FF88A8</color>
+    <color name="accent_cyan">#65E6FF</color>
+    <color name="glass_border">#38FFFFFF</color>
+    <color name="glass_surface">#1AFFFFFF</color>
+    <color name="text_primary">#F7FBFF</color>
+    <color name="text_secondary">#9DB4CC</color>
+</resources>

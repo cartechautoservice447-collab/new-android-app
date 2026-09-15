@@ -1,0 +1,21 @@
+/* Lightweight, GPU-friendly interaction feedback. */
+button:not([disabled]),
+a[href],
+[role="button"],
+[role="tab"],
+[role="menuitem"]{
+  -webkit-tap-highlight-color:transparent;
+}
+
+.liquid-fluid-pressed{
+  --liquid-fluid-scale:.975;
+  transform:scale(var(--liquid-fluid-scale)) translateZ(0)!important;
+  transition:transform 90ms cubic-bezier(.2,.85,.25,1)!important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .liquid-fluid-pressed{
+    transform:none!important;
+    transition:none!important;
+  }
+}

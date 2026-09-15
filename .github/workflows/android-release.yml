@@ -1,10 +1,10 @@
-name: Signed Android App Bundle
+name: Android APK and AAB Release
 
 on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   release:
@@ -29,6 +29,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -54,25 +55,44 @@ jobs:
           echo "$KEYSTORE_B64" | base64 --decode > android/app/keystore/release-upload.jks
           chmod 600 android/app/keystore/release-upload.jks
 
-      - name: Build signed release AAB
+      - name: Build signed release APK and AAB
         working-directory: android
         env:
           ANDROID_KEYSTORE_PATH: ${{ github.workspace }}/android/app/keystore/release-upload.jks
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-        run: ./gradlew app:bundleRelease
-
-      - name: Verify signed release AAB
         run: |
-          test -f android/app/build/outputs/bundle/release/app-release.aab
-          jarsigner -verify -verbose -certs android/app/build/outputs/bundle/release/app-release.aab >/tmp/jarsigner.txt
-          grep -q "jar verified" /tmp/jarsigner.txt
+          chmod +x ./gradlew
+          ./gradlew app:assembleRelease app:bundleRelease
 
-      - name: Upload signed AAB
+      - name: Verify signed release APK and AAB
+        run: |
+          test -f android/app/build/outputs/apk/release/app-release.apk
+          test -f android/app/build/outputs/bundle/release/app-release.aab
+          jarsigner -verify -verbose -certs android/app/build/outputs/apk/release/app-release.apk >/tmp/apk-jarsigner.txt
+          jarsigner -verify -verbose -certs android/app/build/outputs/bundle/release/app-release.aab >/tmp/aab-jarsigner.txt
+          grep -q "jar verified" /tmp/apk-jarsigner.txt
+          grep -q "jar verified" /tmp/aab-jarsigner.txt
+
+      - name: Upload Android build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: mobile-liquid-glass-signed-aab
-          path: android/app/build/outputs/bundle/release/app-release.aab
+          name: android-release-${{ github.run_number }}
+          path: |
+            android/app/build/outputs/apk/release/app-release.apk
+            android/app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error
           retention-days: 14
+
+      - name: Publish GitHub Release with APK and AAB
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: android-v1.0.${{ github.run_number }}
+        run: |
+          gh release create "$TAG_NAME" \
+            --target "$GITHUB_SHA" \
+            --title "Android v1.0.${{ github.run_number }}" \
+            --notes "Automated Android release built by GitHub Actions. Includes the installable signed APK and Play Store-ready signed AAB." \
+            android/app/build/outputs/apk/release/app-release.apk \
+            android/app/build/outputs/bundle/release/app-release.aab
